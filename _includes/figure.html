@@ -27,6 +27,9 @@
       {% if include.title %}title="{{ include.title }}"{% endif %}
       {% if include.zoomable %}data-zoomable{% endif %}
       onerror="this.onerror=null; $('.responsive-img-srcset').remove();"
+      style="max-width: 65%; height: auto;"
+      {% if include.max-width %}style="max-width: {{ include.max-width }};"{% endif %}
+      {% if include.max-height %}style="height: auto; max-height: {{ include.max-height }};"{% endif %}
     />
   </picture>
 

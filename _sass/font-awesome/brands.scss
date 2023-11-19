@@ -23,6 +23,7 @@
 .fab,
 .#{$fa-css-prefix}-brands {
   font-weight: 400;
+  font-size: 0.6em;
 }
 
 @each $name, $icon in $fa-brand-icons {
