@@ -1,0 +1,249 @@
+---
+layout: no-header
+permalink: /diffant
+title: DiffAnt
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DiffAnt: Diffusion Models for Action Anticipation</title>
+    <link rel="stylesheet" href="/assets/css/main.scss">
+    <link rel="stylesheet" href="/paper_pages/diffant/styles.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+
+
+<body>
+    <div class="content-container">
+
+    <!-- Title card -->
+    <section id="title-card">
+        <h1>DiffAnt: Diffusion Models for Action Anticipation</h1>
+    <div class="authors">
+        <a href="https://zeyun-zhong.github.io" target="_blank">Zeyun Zhong<sup>12</sup></a>,
+        <a href="https://ies.iar.kit.edu/1473_1524.php" target="_blank">Chengzhi Wu<sup>1</sup></a>,
+        <a href="https://www.researchgate.net/profile/Manuel-Martin-16" target="_blank">Manuel Martin<sup>2</sup></a>
+        <br>
+        <a href="https://www.researchgate.net/profile/Michael-Voit" target="_blank">Michael Voit<sup>2</sup></a>,
+        <a href="https://pages.iai.uni-bonn.de/gall_juergen/" target="_blank">Juergen Gall<sup>3</sup></a>,
+        <a href="https://www.iosb.fraunhofer.de/de/ueber-uns/direktorium/juergen-beyerer.html" target="_blank">Jürgen Beyerer<sup>12</sup></a>
+
+    </div>
+    <p class="affiliation">
+        <a href="https://ies.iar.kit.edu/" target="_blank"><sup>1</sup>KIT IAR-IES</a>,
+        <a href="https://www.iosb.fraunhofer.de/" target="_blank"><sup>2</sup>Fraunhofer IOSB</a>,
+        <a href="https://www.iai.uni-bonn.de/" target="_blank"><sup>3</sup>University of Bonn IAI</a>
+    </p>
+    <!--
+    <p class="cvpr-link">
+        <a href="https://cvpr.thecvf.com/Conferences/2024" target="_blank">CVPR 2024 Under review</a>
+    </p>
+    -->
+    <div class="buttons">
+        <a href="/paper_pages/diffant/diffant.pdf" target="_blank">
+            <i class="fas fa-file-pdf"></i> Paper
+        </a>
+        <a href="https://github.com/zeyun-zhong/diffant" target="_blank">
+            <i class="fab fa-github"></i> Code (Coming Soon!)
+        </a>
+    </div>
+
+    </section>
+    <!-- YouTube video -->
+    <!--
+    <div style="text-align: center;">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/a5-gWsUMVXw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    -->
+
+    <!--
+    <div class="separator separator-1">
+        <svg viewBox="0 0 100 10" preserveAspectRatio="none">
+            <path d="M0,10 C50,0 50,10 100,10 V10 H0 Z"></path>
+        </svg>
+    </div>
+    -->
+
+    <!-- Abstract -->
+    <section id="abstract">
+        <h2>Abstract</h2>
+        <p>Anticipating future actions is inherently uncertain.
+            Given an observed video segment containing ongoing actions,
+            multiple subsequent actions can plausibly follow.
+            This uncertainty becomes even larger when predicting far
+            into the future. However, the majority of existing action anticipation
+            models adhere to a deterministic approach, neglecting
+            to account for future uncertainties. In this work,
+            we rethink action anticipation from a generative view, employing
+            diffusion models to capture different possible future
+            actions. In this framework, future actions are iteratively
+            generated from standard Gaussian noise in the latent space,
+            conditioned on the observed video, and subsequently transitioned
+            into the action space. Extensive experiments on four benchmark
+            datasets, i.e., Breakfast, 50Salads, EpicKitchens, and EGTEA Gaze+,
+            are performed and the proposed method achieves superior or
+            comparable results to state-of-the-art methods, showing the
+            effectiveness of a generative approach for action anticipation. </p>
+        <div style="display: flex; align-items: center; gap:2em;">
+        <div style="width: 50%;">
+            <img src="/paper_pages/diffant/imgs/figure1.png" alt="Uncertainty" style="width: 100%; height: auto;">
+        </div>
+        <div style="width: 50%; display: flex; justify-content: center; align-items: center;">
+            <img src="/paper_pages/diffant/imgs/concept.png" alt="Concept" style="max-width: 100%; max-height: 100%; height: auto;">
+        </div>
+    </div>
+    </section>
+
+    <!-- Method -->
+    <section id="method">
+    <h2>Overall Inference Pipeline</h2>
+        <p>During inference, future action embeddings \( \mathbf{z}_S \) are drawn
+            from a standard Gaussian distribution \( \mathcal{N} \) ( \( \boldsymbol{0} \), \( \boldsymbol{I} \) ).
+            Alternatively, we can initialize \( \mathbf{z}_S \) with zero vectors
+            (mean of the standard Gaussian distribution) for deterministic results.
+            The decoder is made step-aware by embedding the current diffusion step \( s=S \)
+            with sinusoidal positional encodings, futher integrated via a multi-layer perceptron.
+            The decoder inputs \( \mathbf{z}_S \), \( Q \), and step data, aiming to initially
+            rectify the noisy futures and predict \( \tilde{\mathbf{z}}_0 \), taking cues
+            from the encoded past observations \( E \) via cross-attention.
+            To enable the iterative reverse diffusion process, we apply the forward chain to
+            get \( \tilde{\mathbf{z}}_{S-1} \) and input it with the updated step \( s=S-1 \) to the decoder.
+            By iteratively removing noise, a final sample \( \tilde{\mathbf{z}}_0 \) is generated via
+            a trajectory \( \mathbf{z}_{S} \), \( \tilde{\mathbf{z}}_{S-1} \), ..., \( \tilde{\mathbf{z}}_0 \).</p>
+    <div style="display: flex; align-items: center; gap:2em;">
+        <div style="width: 55%;">
+            <img src="/paper_pages/diffant/imgs/inference.png" alt="Inference Pipeline" style="width: 100%; height: auto;">
+        </div>
+        <div style="width: 45%; display: flex; justify-content: center; align-items: center;">
+            <img src="/paper_pages/diffant/imgs/decoder.png" alt="Decoder" style="max-width: 100%; max-height: 100%; height: auto;">
+        </div>
+    </div>
+    </section>
+
+    <section id="training">
+        <h2>Training</h2>
+        <p>To integrate discrete actions \( \boldsymbol{a} \) into the continuous
+            diffusion processes, we extend standard diffusion models with a future action embedding function
+            and an action predictor to facilitate the conversion between continuous embeddings \( \mathbf{z}_0 \)
+            and discrete actions \( \boldsymbol{a} \).</p>
+        <img src="/paper_pages/diffant/imgs/training.png" alt="training" style="width: 55%; height: auto;">
+    </section>
+
+
+    <!-- Results -->
+    <section id="results">
+        <h2>Quantitative Results</h2>
+        <img src="/paper_pages/diffant/imgs/quantitative1.png" alt="Quantitative 1">
+        <img src="/paper_pages/diffant/imgs/quantitative2.png" alt="Quantitative 2" style="width: 42%; height: auto;">
+
+    </section>
+
+    <section id="qualitative">
+        <h2>Qualitative Results</h2>
+        <img src="/paper_pages/diffant/imgs/qualitative1.png" alt="Qualitative 1">
+        <img src="/paper_pages/diffant/imgs/qualitative2.png" alt="Qualitative 2">
+
+    </section>
+
+    </div>
+
+    <!-- Team -->
+    <section class="team-container">
+        <h2>Team</h2>
+        <!-- First row of authors -->
+        <div class="team-row">
+            <div class="team-member">
+                <img src="/assets/img/profile/Zhong.jpg" alt="Zeyun Zhong">
+                <p>Zeyun Zhong<br>zeyun.zhong@kit.edu</p>
+            </div>
+            <div class="team-member">
+                <img src="/assets/img/profile/Wu.jpg" alt="Chengzhi Wu">
+                <p>Chengzhi Wu<br>chengzhi.wu@kit.edu</p>
+            </div>
+            <div class="team-member">
+                <img src="/assets/img/profile/Martin.jpg" alt="Manuel Martin">
+                <p>Manuel Martin<br>manuel.martin@iosb.fraunhofer.de</p>
+            </div>
+        </div>
+
+        <!-- Second row of authors -->
+        <div class="team-row">
+            <div class="team-member">
+                <img src="/assets/img/profile/Voit.jpg" alt="Michael Voit">
+                <p>Michael Voit<br>michael.voit@iosb.fraunhofer.de</p>
+            </div>
+            <div class="team-member">
+                <img src="/assets/img/profile/Gall.jpg" alt="Juergen Gall">
+                <p>Juergen Gall<br>gall@iai.uni-bonn.de</p>
+            </div>
+            <div class="team-member">
+                <img src="/assets/img/profile/Beyerer.jpg" alt="Jürgen Beyerer">
+                <p>Jürgen Beyerer<br>juergen.beyerer@iosb.fraunhofer.de</p>
+            </div>
+        </div>
+    </section>
+
+    <!--
+    <section class="team">
+        <h2>Team</h2>
+        <div class="authors">
+            <div class="team-member">
+                <img src="/assets/img/profile/Zhong.jpg" alt="Zeyun Zhong">
+                <p>Zeyun Zhong<br>
+                zeyun.zhong@kit.edu</p>
+            </div>
+            <div class="team-member">
+                <img src="/assets/img/profile/Wu.jpg" alt="Chengzhi Wu">
+                <p>Chengzhi Wu<br>
+                chengzhi.wu@kit.edu</p>
+            </div>
+            <div class="team-member">
+                <img src="/assets/img/profile/Martin.jpg" alt="Manuel Martin">
+                <p>Manuel Martin<br>
+                manuel.martin@iosb.fraunhofer.de</p>
+            </div>
+            <div class="team-member">
+                <img src="/assets/img/profile/Voit.jpg" alt="Michael Voit">
+                <p>Michael Voit<br>
+                michael.voit@iosb.fraunhofer.de</p>
+            </div>
+            <div class="team-member">
+                <img src="/assets/img/profile/Gall.jpg" alt="Juergen Gall">
+                <p>Juergen Gall<br>
+                gall@iai.uni-bonn.de</p>
+            </div>
+            <div class="team-member">
+                <img src="/assets/img/profile/Beyerer.jpg" alt="Jürgen Beyerer">
+                <p>Jürgen Beyerer<br>
+                juergen.beyerer@iosb.fraunhofer.de</p>
+            </div>
+        </div>
+    -->
+
+
+
+    <!-- <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const titleCard = document.getElementById('title-card');
+            const mouseOverlay = document.createElement('div');
+            mouseOverlay.classList.add('mouse-overlay');
+            document.body.appendChild(mouseOverlay);
+
+            titleCard.addEventListener('mousemove', (event) => {
+                mouseOverlay.style.display = 'block';
+                mouseOverlay.style.top = event.clientY - mouseOverlay.offsetHeight / 2 + 'px';
+                mouseOverlay.style.left = event.clientX - mouseOverlay.offsetWidth / 2 + 'px';
+            });
+
+            titleCard.addEventListener('mouseleave', () => {
+                mouseOverlay.style.display = 'none';
+            });
+        });
+    </script> -->
+</body>
+</html>
