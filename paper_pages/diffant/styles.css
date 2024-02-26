@@ -219,6 +219,12 @@ h2::after {
     gap: 2rem; /* Adjust the gap size as needed */
 }
 
+@media (max-width: 600px) {
+  .team-row {
+    flex-direction: column; /* 在小屏幕上将导航项垂直排列 */
+  }
+}
+
 /* Individual team member styling */
 .team-member {
     display: flex;
