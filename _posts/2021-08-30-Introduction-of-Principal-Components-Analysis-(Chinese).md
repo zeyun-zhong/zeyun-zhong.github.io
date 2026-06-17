@@ -17,7 +17,7 @@ PCA的目的有两个：
 - **最大化正交投影后数据的方差**。也就是说想办法找到新的一组维度，使得在这些维度构成的空间上，样本间的差距最大。这样我们就能更好的分辨和描绘出每个独立的样本。
 - **最小化重构损失**。我们虽然想要使用更少的维度来描述原数据，但是也不希望重构的数据与原数据相差甚远。
 
-在分析这两个目的之前，我们来看一下重构这个概念。当数据投影到新维度空间时，投影数据的表示方式就是新维度空间的表示方式。这时如果我们想要计算重构损失，我们就要把投影数据转换成为原维度空间的表示方式。举个简单的例子，如下图所示，蓝点的坐标是(1,2)，投影到红轴上，投影点在红轴的表示方式是：$[1,2]\cdot[\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}}]^T = \frac{3}{\sqrt{2}}$。我们现在要计算重构损失，就要把橙点从红轴上再转换到原坐标系：$\frac{3}{\sqrt{2}}\cdot[\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}}]=(\frac{3}{2},\frac{3}{2})$。
+在分析这两个目的之前，我们来看一下重构这个概念。当数据投影到新维度空间时，投影数据的表示方式就是新维度空间的表示方式。这时如果我们想要计算重构损失，我们就要把投影数据转换成为原维度空间的表示方式。举个简单的例子，如下图所示，蓝点的坐标是(1,2)，投影到红轴上，投影点在红轴的表示方式是：$$[1,2]\cdot[\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}}]^T = \frac{3}{\sqrt{2}}$$。我们现在要计算重构损失，就要把橙点从红轴上再转换到原坐标系：$$\frac{3}{\sqrt{2}}\cdot[\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}}]=(\frac{3}{2},\frac{3}{2})$$。
 
 ![](/assets/images/Linear Algebra/proj_reconst2.png){:width=30% .align-center}
 *图 1. 二维数据（蓝点）在新维度（红轴）上的投影（橙点）。*
@@ -29,25 +29,25 @@ PCA的目的有两个：
 ![](/assets/images/Linear Algebra/PCA.gif){:width=80% .align-center}
 *图 2. 二维数据（蓝点）在新维度（黑线）上的投影（红点）。*
 
-现在我们用公式来证明一下这个观察。让我们用$\boldsymbol{X}\in R ^{m\times n}$来表示去中心化的数据，其中$m$表示样本的数量，$n$表示每一个样本的维度。去中心化意味着数据已被平移，新的数据中心是零向量，那么现在数据的协方差矩阵就是：
+现在我们用公式来证明一下这个观察。让我们用$$\boldsymbol{X}\in R ^{m\times n}$$来表示去中心化的数据，其中$$m$$表示样本的数量，$$n$$表示每一个样本的维度。去中心化意味着数据已被平移，新的数据中心是零向量，那么现在数据的协方差矩阵就是：
 
 $$
 \boldsymbol{\Sigma} = \frac{1}{m-1} (\boldsymbol{X}-\boldsymbol{\bar{X}})^T(\boldsymbol{X}-\boldsymbol{\bar{X}}) = \frac{1}{m-1} \boldsymbol{X}^T\boldsymbol{X}。\tag{1}
 $$
 
-我们用一个单位向量$\boldsymbol{w}\in R^{n\times 1}$来作为第一主成分（方便起见，我们暂时只考虑第一主成分），因为新维度是原所有维度的线性组合，所以长度为$n$。那么数据在这一向量上的投影就是$\boldsymbol{X}_{proj} = \boldsymbol{X}\boldsymbol{w}$，$\boldsymbol{X}_{proj} \in R^{m\times 1}$。根据目的一，我们想最大化投影后数据的方差，即：
+我们用一个单位向量$$\boldsymbol{w}\in R^{n\times 1}$$来作为第一主成分（方便起见，我们暂时只考虑第一主成分），因为新维度是原所有维度的线性组合，所以长度为$$n$$。那么数据在这一向量上的投影就是$$\boldsymbol{X}_{proj} = \boldsymbol{X}\boldsymbol{w}$$，$$\boldsymbol{X}_{proj} \in R^{m\times 1}$$。根据目的一，我们想最大化投影后数据的方差，即：
 
 $$
 \begin{aligned}      \boldsymbol{w} = \underset{\boldsymbol{w}}{\mathrm{argmax}} \, \mathrm{Var}(\boldsymbol{X}_{proj}) &= \underset{\boldsymbol{w}}{\mathrm{argmax}} \, \frac{1}{m-1} \boldsymbol{w}^T\boldsymbol{X}^T\boldsymbol{X}\boldsymbol{w} \\      &= \underset{\boldsymbol{w}}{\mathrm{argmax}} \, \boldsymbol{w}^T\boldsymbol{\Sigma}\boldsymbol{w} \quad \text{subject to} \quad \boldsymbol{w}^T\boldsymbol{w}=1。  \end{aligned} \tag{2} 
 $$
 
-原数据的重构表示为$\boldsymbol{X}_{reconst} = \boldsymbol{X}_{proj}\boldsymbol{w}^T$，$\boldsymbol{X}_{reconst}\in R^{m\times n}$。根据目的二，我们要最小化重构损失，即：
+原数据的重构表示为$$\boldsymbol{X}_{reconst} = \boldsymbol{X}_{proj}\boldsymbol{w}^T$$，$$\boldsymbol{X}_{reconst}\in R^{m\times n}$$。根据目的二，我们要最小化重构损失，即：
 
 $$
 \begin{aligned}     \boldsymbol{w} &= \underset{\boldsymbol{w}}{\mathrm{argmin}} \, || \boldsymbol{X} - \boldsymbol{X}_{reconst} ||_F^2 \\& = \underset{\boldsymbol{w}}{\mathrm{argmin}} \, \mathrm{Tr}\big((\boldsymbol{X}-\boldsymbol{X}\boldsymbol{w}\boldsymbol{w}^T)^T(\boldsymbol{X}-\boldsymbol{X}\boldsymbol{w}\boldsymbol{w}^T) \big)\\     & = \underset{\boldsymbol{w}}{\mathrm{argmin}} \, \mathrm{Tr}(\boldsymbol{X}^T\boldsymbol{X} - \boldsymbol{X}^T\boldsymbol{X}\boldsymbol{w}\boldsymbol{w}^T-\boldsymbol{w}\boldsymbol{w}^T\boldsymbol{X}^T\boldsymbol{X}+\boldsymbol{w}\boldsymbol{w}^T\boldsymbol{X}^T\boldsymbol{X}\boldsymbol{w}\boldsymbol{w}^T) \\     & = \underset{\boldsymbol{w}}{\mathrm{argmin}} \, \underbrace{\mathrm{Tr}(\boldsymbol{X}^T\boldsymbol{X})}_{常数项，可省略} - \underbrace{2\cdot \mathrm{Tr}(\boldsymbol{X}^T\boldsymbol{X}\boldsymbol{w}\boldsymbol{w}^T)}_{迹运算}+ \underbrace{\mathrm{Tr}(\boldsymbol{X}^T\boldsymbol{X}\boldsymbol{w}\boldsymbol{w}^T\boldsymbol{w}\boldsymbol{w}^T)}_{迹运算} \\     & = \underset{\boldsymbol{w}}{\mathrm{argmin}} \, -2\cdot \mathrm{Tr}(\boldsymbol{X}^T\boldsymbol{X}\boldsymbol{w}\boldsymbol{w}^T)+ \underbrace{\mathrm{Tr}(\boldsymbol{X}^T\boldsymbol{X}\boldsymbol{w}\boldsymbol{w}^T)}_{单位向量，\boldsymbol{w}^T\boldsymbol{w}=1} \\     & = \underset{\boldsymbol{w}}{\mathrm{argmax}} \,\mathrm{Tr}(\boldsymbol{X}^T\boldsymbol{X}\boldsymbol{w}\boldsymbol{w}^T) = \underset{\boldsymbol{w}}{\mathrm{argmax}} \, \mathrm{Tr}(\boldsymbol{w}^T\boldsymbol{X}^T\boldsymbol{X}\boldsymbol{w}) \\& = \underset{\boldsymbol{w}}{\mathrm{argmax}} \,\boldsymbol{w}^T\boldsymbol{\Sigma}\boldsymbol{w}\quad \text{subject to} \quad \boldsymbol{w}^T\boldsymbol{w}=1。 \end{aligned} \tag{3} 
 $$
 
-其中$\|\|\boldsymbol{\cdot} \|\|_F$表示Frobenius范数，类似于向量的$L^2$范数。迹运算的部分请参考Deep Learning Book的[2.10](https://www.deeplearningbook.org/contents/linear_algebra.html)小节。可见，PCA的这两个目的最终达到的效果是一样的。
+其中$$\|\|\boldsymbol{\cdot} \|\|_F$$表示Frobenius范数，类似于向量的$$L^2$$范数。迹运算的部分请参考Deep Learning Book的[2.10](https://www.deeplearningbook.org/contents/linear_algebra.html)小节。可见，PCA的这两个目的最终达到的效果是一样的。
 
 ## 求解
 现在有了公式就好办了，我们先用拉格朗日乘子法将有约束的优化问题转化成无约束的优化问题：
@@ -56,18 +56,18 @@ $$
 \boldsymbol{w} = \underset{\boldsymbol{w}}{\mathrm{argmax}} \, L(\boldsymbol{w},\lambda) = \underset{\boldsymbol{w}}{\mathrm{argmax}} \, \boldsymbol{w}^T\boldsymbol{\Sigma}\boldsymbol{w} - \lambda(\boldsymbol{w}^T\boldsymbol{w}-1)。\tag{4} 
 $$
 
-对$\boldsymbol{w}$求导并置零来求得静态点（对矩阵求导的部分可参考[这里](https://zhuanlan.zhihu.com/p/24709748)）：
+对$$\boldsymbol{w}$$求导并置零来求得静态点（对矩阵求导的部分可参考[这里](https://zhuanlan.zhihu.com/p/24709748)）：
 
 $$
 \frac{\partial L}{\partial \boldsymbol{w}} = 2(\boldsymbol{\Sigma}\boldsymbol{w}-\lambda\boldsymbol{w}) = \boldsymbol{0}。\tag{5}
 $$
 
-这样我们就得到了特征值的定义等式：$\boldsymbol{\Sigma \boldsymbol{w}} = \lambda\boldsymbol{w}$，由此可知$\lambda$是协方差矩阵$\boldsymbol{\Sigma}$的特征值。将此式代入（4）可得，第一主成分即$\boldsymbol{\Sigma}$的最大特征值所对应的特征向量。值得一提的是，$\boldsymbol{\Sigma}$和$\boldsymbol{X}^T\boldsymbol{X}$的特征向量矩阵都是一样的，只不过特征值存在着系数的差别。因此，对$\boldsymbol{\Sigma}$和$\boldsymbol{X}^T\boldsymbol{X}$进行特征值分解都会获得同样的结果。
+这样我们就得到了特征值的定义等式：$$\boldsymbol{\Sigma \boldsymbol{w}} = \lambda\boldsymbol{w}$$，由此可知$$\lambda$$是协方差矩阵$$\boldsymbol{\Sigma}$$的特征值。将此式代入（4）可得，第一主成分即$$\boldsymbol{\Sigma}$$的最大特征值所对应的特征向量。值得一提的是，$$\boldsymbol{\Sigma}$$和$$\boldsymbol{X}^T\boldsymbol{X}$$的特征向量矩阵都是一样的，只不过特征值存在着系数的差别。因此，对$$\boldsymbol{\Sigma}$$和$$\boldsymbol{X}^T\boldsymbol{X}$$进行特征值分解都会获得同样的结果。
 
-如果我们要求前$l$个主成分，我们只需要用$\boldsymbol{W}\in R ^{n\times l}$来代替式（2）和（3）中的单位向量$\boldsymbol{w}$即可。$\boldsymbol{W}$中列向量（主成分）互相正交，因此$\boldsymbol{W}^T\boldsymbol{W}=\boldsymbol{I}_l$。根据归纳法（详情请参考[这里](https://math.stackexchange.com/questions/2280047/how-to-prove-pca-using-induction)），前$l$个主成分就是$\boldsymbol{\Sigma}$的$l$个最大特征值所对应的特征向量。
+如果我们要求前$$l$$个主成分，我们只需要用$$\boldsymbol{W}\in R ^{n\times l}$$来代替式（2）和（3）中的单位向量$$\boldsymbol{w}$$即可。$$\boldsymbol{W}$$中列向量（主成分）互相正交，因此$$\boldsymbol{W}^T\boldsymbol{W}=\boldsymbol{I}_l$$。根据归纳法（详情请参考[这里](https://math.stackexchange.com/questions/2280047/how-to-prove-pca-using-induction)），前$$l$$个主成分就是$$\boldsymbol{\Sigma}$$的$$l$$个最大特征值所对应的特征向量。
 
 ## 示例分析
-这里我们用一张假色红外图$\boldsymbol{I}$举个例子。这张红外图由三个通道组成，分别是NIR（近红外），R和G。这张图的分辨率是$255\times 607$，因此$\boldsymbol{X}$的大小是$154785\times 3$。在开始下面的操作之前，我们先将$\boldsymbol{X}$去中心化：$\boldsymbol{X} = \boldsymbol{X_{ori}} - \boldsymbol{\bar X}$。
+这里我们用一张假色红外图$$\boldsymbol{I}$$举个例子。这张红外图由三个通道组成，分别是NIR（近红外），R和G。这张图的分辨率是$$255\times 607$$，因此$$\boldsymbol{X}$$的大小是$$154785\times 3$$。在开始下面的操作之前，我们先将$$\boldsymbol{X}$$去中心化：$$\boldsymbol{X} = \boldsymbol{X_{ori}} - \boldsymbol{\bar X}$$。
 
 ![](/assets/images/Linear Algebra/houseigb.jpg){:width=50% .align-center}
 *图 3. 假色红外图。*
@@ -83,7 +83,7 @@ $$
 \right]。
 $$
 
-根据[相关系数](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient)公式：$\rho_{(A, B)} = \frac{\text{cov}(A, B)}{\sigma_A \sigma_B}$，可计算出NIR和R的相关系数是70.2%，NIR和G的系数是72.9%，R和G的系数是96.0%。可见，这三个维度是相互关联的。接下来我们应用PCA，对协方差矩阵进行特征分解，会得到三个特征值$\boldsymbol{\lambda}$（10107，1623，106）和相对应的三个特征向量$\boldsymbol{W}$（主成分）（$[0.74, 0.48, 0.46]^T，[0.67, -0.57, -0.48]^T，[-0.03, -0.67, 0.74]^T$）。将原图投影到特征空间（$\boldsymbol{X}\boldsymbol{W}$），可得到新的协方差矩阵：
+根据[相关系数](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient)公式：$$\rho_{(A, B)} = \frac{\text{cov}(A, B)}{\sigma_A \sigma_B}$$，可计算出NIR和R的相关系数是70.2%，NIR和G的系数是72.9%，R和G的系数是96.0%。可见，这三个维度是相互关联的。接下来我们应用PCA，对协方差矩阵进行特征分解，会得到三个特征值$$\boldsymbol{\lambda}$$（10107，1623，106）和相对应的三个特征向量$$\boldsymbol{W}$$（主成分）（$$[0.74, 0.48, 0.46]^T，[0.67, -0.57, -0.48]^T，[-0.03, -0.67, 0.74]^T$$）。将原图投影到特征空间（$$\boldsymbol{X}\boldsymbol{W}$$），可得到新的协方差矩阵：
 
 $$
 \boldsymbol{\Sigma}_{pca} = \left[\begin{matrix}

@@ -4,13 +4,6 @@ layout: default
 
 <!-- about.html -->
       <div class="post">
-        <header class="post-header">
-          <h1 class="post-title">
-            {% if site.title == "blank" -%}<span class="font-weight-bold">{{ site.first_name }}</span> {{ site.middle_name }} {{ site.last_name }}{%- else -%}{{ site.title }}{%- endif %}
-          </h1>
-          <p class="desc">{{ page.subtitle }}</p>
-        </header>
-
         <article>
           {% if page.profile -%}
           <div class="profile float-{%- if page.profile.align == 'left' -%}left{%- else -%}right{%- endif -%}">
@@ -27,7 +20,6 @@ layout: default
               path=profile_image_path
               class=profile_image_class
               alt=page.profile.image
-              max-width="50%"
               cache_bust=true -%}
             {% endif -%}
             {%- if page.profile.more_info %}
@@ -37,6 +29,13 @@ layout: default
             {%- endif %}
           </div>
           {%- endif %}
+
+          <header class="post-header">
+            <h1 class="post-title">
+              {% if site.title == "blank" -%}<span class="font-weight-bold">{{ site.first_name }}</span> {{ site.middle_name }} {{ site.last_name }}{%- else -%}{{ site.title }}{%- endif %}
+            </h1>
+            <p class="desc">{{ page.subtitle }}</p>
+          </header>
 
           <div class="clearfix">
             {{ content }}
@@ -52,35 +51,37 @@ layout: default
               <div class="contact-note">
                 {{ site.contact_note }}
               </div>
-
             </div>
           {%- endif %}
-
-          <!-- News -->
-          {% if page.news and site.announcements.enabled -%}
-            <h2><a href="{{ '/news/' | relative_url }}" style="color: inherit;">news</a></h2>
-            {%- include news.html limit=true %}
-          {%- endif %}
-
-          <!-- Latest posts -->
-          {% if page.latest_posts -%}
-            <h2><a href="{{ '/blog/' | relative_url }}" style="color: inherit;">Latest Posts</a></h2>
-            {%- include latest_posts.html %}
-          {%- endif %}
-
-          <!-- Selected papers -->
-          {% if page.selected_papers -%}
-            <h2><a href="{{ '/publications/' | relative_url }}" style="color: inherit;">Selected Publications</a></h2>
-            {%- include selected_papers.html %}
-          {%- endif %}
-
-          <!-- Services -->
-          {% if page.services -%}
-            <h2>Professional Services</h2>
-            {% capture services_content %}{% include services.md %}{% endcapture %}
-            {{ services_content | markdownify }}
-          {%- endif %}
-
         </article>
+
+        <!-- News -->
+        {% if page.news and site.announcements.enabled -%}
+          <h2><a href="{{ '/news/' | relative_url }}" style="color: inherit;">News</a></h2>
+          {%- include news.html limit=true %}
+        {%- endif %}
+
+        <!-- Latest posts -->
+        {% if page.latest_posts -%}
+          <h2><a href="{{ '/blog/' | relative_url }}" style="color: inherit;">Latest Posts</a></h2>
+          {%- include latest_posts.html %}
+        {%- endif %}
+
+        <!-- Selected papers -->
+        {% if page.selected_papers -%}
+          <h2><a href="{{ '/publications/' | relative_url }}" style="color: inherit;">Selected Publications</a></h2>
+          <p>My research develops efficient memory mechanisms for understanding streaming and long-form video. A recurring theme is reformulating linear attention into compact, constant-memory representations: 
+            CLAM introduces this as a memory module for action anticipation, FlowNar extends it to real-time narration of arbitrarily long videos, 
+            and E²-TTT generalizes the idea to test-time training for long-context modeling. 
+            Together, these works pursue models whose memory and computation stay bounded as inputs grow, enabling accurate understanding of arbitrarily long sequences.</p>
+          {%- include selected_papers.html %}
+        {%- endif %}
+
+        <!-- Services -->
+        {% if page.services -%}
+          <h2>Professional Services</h2>
+          {% capture services_content %}{% include services.md %}{% endcapture %}
+          {{ services_content | markdownify }}
+        {%- endif %}
 
 </div>

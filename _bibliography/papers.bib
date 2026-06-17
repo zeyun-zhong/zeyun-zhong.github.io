@@ -1,27 +1,88 @@
 ---
 ---
 
-@string{cvpr = {{IEEE/CVF} Conference on Computer Vision and Pattern Recognition (<b>CVPR</b>),}}
-@string{eccv = {European Conference on Computer Vision (<b>ECCV</b>),}}
-@string{neurips = {Conference on Neural Information Processing Systems (<b>NeurIPS</b>),}}
+@string{cvpr = {{IEEE/CVF} Conference on Computer Vision and Pattern Recognition (<b>CVPR</b>)}}
+@string{eccv = {European Conference on Computer Vision (<b>ECCV</b>)}}
+@string{neurips = {Conference on Neural Information Processing Systems (<b>NeurIPS</b>)}}
 @string{wacv = {IEEE/CVF Winter Conference on Applications of Computer Vision (<b>WACV</b>)}}
+@string{icml = {International Conference on Machine Learning (<b>ICML</b>)}}
+@string{tpami = {IEEE Transactions on Pattern Analysis and Machine Intelligence (<b>TPAMI</b>)}}
+
+@article{zhong2026e2ttt,
+  title={Rethinking Expressivity and Efficiency in Test-Time Training},
+  author={Zeyun Zhong and Joya Chen and Manuel Martin and Frederik Diederichs and Juergen Gall and Jürgen Beyerer},
+  year={2026},
+  selected={true},
+  note={Under Review},
+  preview={ttt.png},
+  abstract={Test-Time Training (TTT) enables long-context processing via continuous weight updates during inference, but current methods struggle to balance the expressivity of per-token update dynamics 
+  with the hardware efficiency of chunk-wise approximations. We propose E²-TTT (Expressive and Efficient TTT) to bridge this gap. By deriving a closed-form state transition that exactly aggregates 
+  per-token momentum and decay coefficients within a chunk, E²-TTT enables fully parallelized chunk-level training while preserving the temporal structure of the update rule that prior chunk-wise methods discard. 
+  We validate E²-TTT by training models up to 1.3B parameters from scratch. Extensive experiments demonstrate that our method consistently outperforms previous TTT and hybrid attention baselines in language modeling and retrieval, 
+  while achieving significantly better extrapolation on the standard ``Needle in a Haystack'' test, maintaining > 90% accuracy on passkey retrieval at the training context length. 
+  Meanwhile, E²-TTT can match the training throughput of efficient chunk-wise methods, demonstrating that it effectively reconciles expressivity with efficiency.}
+}
+
+@inproceedings{zhong2026flownar,
+  title={FlowNar: Scalable Streaming Narration for Long-Form Videos},
+  author={Zhong, Zeyun and Martin, Manuel and Wu, Chengzhi and Schneider, David and Diederichs, Frederik and Gall, Juergen and Beyerer, Juergen},
+  booktitle=icml,
+  year={2026},
+  selected={true},
+  arxiv={2606.00620},
+  code={https://github.com/zeyun-zhong/FlowNar},
+  website={https://zeyun-zhong.github.io/FlowNar/},
+  preview={flownar.png},
+  abstract={Recent Large Multimodal Models (LMMs), primarily designed for offline settings, are ill-suited for the dynamic requirements of streaming video. 
+  While recent online adaptations improve real-time processing, they still face critical scalability challenges, with resource demands typically growing at least linearly with video duration. 
+  To overcome this bottleneck, we propose FlowNar, a novel framework for scalable streaming video narration. The core of FlowNar is a dynamic context management strategy for historical visual context removal, 
+  combined with our CLAM (Cross Linear Attentive Memory) module for streaming visual history retention, ensuring bounded visual memory usage and computational complexity, crucial for efficient streaming. 
+  We also introduce a realistic self-conditioned evaluation protocol and complementary evaluation metrics to assess streaming narration models under deployment-like conditions. Experiments on the Ego4D, EgoExo4D, 
+  and EpicKitchens100 datasets demonstrate that FlowNar substantially improves narration quality over strong baselines while being highly efficient, 
+  supporting processing of 10x longer videos and achieving 3x higher throughput (FPS).}
+}
+
+@inproceedings{zhong2026anticipation,
+  title={Scalable Video Action Anticipation with Cross Linear Attentive Memory},
+  author={Zhong, Zeyun and Martin, Manuel and Schneider, David and Lerch, David J and Wu, Chengzhi and Diederichs, Frederik and Gall, Juergen and Beyerer, J{\"u}rgen},
+  booktitle=wacv,
+  year={2026},
+  selected={true},
+  pdf={https://openaccess.thecvf.com/content/WACV2026/papers/Zhong_Scalable_Video_Action_Anticipation_with_Cross_Linear_Attentive_Memory_WACV_2026_paper.pdf},
+  code={https://github.com/zeyun-zhong/scalable-anticipation},
+  preview={scalant.png},
+  abstract={Recent advances in action anticipation rely heavily on Transformer architectures to learn discriminative representations of the past observation, incurring high computational and memory overhead that limits their applicability
+  to long videos. While temporal processors with linear complexity like RNNs and state-space models offer efficient alternatives, their sequential nature risks overlooking subtle cues in observed frames that could enhance future anticipation. We address this limitation with Cross Linear Attentive Memory (CLAM), a memory module that selectively retrieves complementary context cues from frame features. By
+  reformulating linear attention to replace traditional cross attention, CLAM achieves linear computation complexity and constant memory usage relative to input length. Finally, by fusing the outputs of the temporal processor and CLAM,
+  a non-autoregressive Transformer decoder generates future actions in one shot with high accuracy. Experiments on egocentric (EpicKitchens100 and Ego4D) and third-person (Thumos14) benchmarks demonstrate our model’s superior
+  anticipation accuracy and scalability, processing longer sequences with significantly less latency growth than alternatives. Our approach also achieves promising results in online action detection.}
+}
+
+@article{wen2026impact,
+  title={IMPACT: A Dataset for Multi-Granularity Human Procedural Action Understanding in Industrial Assembly},
+  author={Wen, Di and Zhong, Zeyun and Schneider, David and Zaremski, Manuel and Kunzmann, Linus and Shi, Yitian and Liu, Ruiping and Chen, Yufan and Zheng, Junwei and Li, Jiahang and others},
+  journal={arXiv preprint arXiv:2604.10409},
+  arxiv={2604.10409},
+  year={2026},
+  code={https://github.com/Kratos-Wen/IMPACT},
+  website={https://diwen.ai/IMPACT/}
+}
 
 @article{zhong2023diffant,
   title={DiffAnt: Diffusion Models for Action Anticipation},
   author={Zhong, Zeyun and Wu, Chengzhi and Martin, Manuel and Voit, Michael and Gall, Juergen and Beyerer, J{\"u}rgen},
   journal={arXiv preprint arXiv:2311.15991},
   year={2023},
-  selected={true},
+  selected={false},
   arxiv={2311.15991},
   preview={diffant.png},
-  website={/diffant},
   abstract={Anticipating future actions is inherently uncertain. Given an observed video segment containing ongoing actions, multiple subsequent actions can plausibly follow. This uncertainty becomes even larger when predicting far into the future. However, the majority of existing action anticipation models adhere to a deterministic approach, neglecting to account for future uncertainties. In this work, we rethink action anticipation from a generative view, employing diffusion models to capture different possible future actions. In this framework, future actions are iteratively generated from standard Gaussian noise in the latent space, conditioned on the observed video, and subsequently transitioned into the action space. Extensive experiments on four benchmark datasets, i.e., Breakfast, 50Salads, EpicKitchens, and EGTEA Gaze+, are performed and the proposed method achieves superior or comparable results to state-of-the-art methods, showing the effectiveness of a generative approach for action anticipation. Our code and trained models will be published on GitHub.}
 }
 
 @article{zhong2023survey,
   title={A Survey on Deep Learning Techniques for Action Anticipation},
   author={Zhong, Zeyun and Martin, Manuel and Voit, Michael and Gall, Juergen and Beyerer, J{\"u}rgen},
-  journal={arXiv preprint arXiv:2309.17257},
+  journal={Under review at IEEE Transactions on Pattern Analysis and Machine Intelligence (<b>TPAMI</b>)},
   year={2023},
   selected = {true},
   arxiv = {2309.17257},
@@ -51,29 +112,125 @@
   volume={2},
   pages={17--26},
   year={2021},
-  selected = {true},
+  selected = {false},
   preview = {mixed.png},
   abstract = {The ability to identify erroneous depth estimates is of fundamental interest. Information regarding the aleatoric uncertainty of depth estimates can be, for example, used to support the process of depth reconstruction itself. Consequently, various methods for the estimation of aleatoric uncertainty in the context of dense stereo matching have been presented in recent years, with deep learningbased approaches being particularly popular. Among these deep learning-based methods, probabilistic strategies are increasingly attracting interest, because the estimated uncertainty can be quantified in pixels or in metric units due to the consideration of real error distributions. However, existing probabilistic methods usually assume a unimodal distribution to describe the error distribution while simply neglecting cases in real-world scenarios that could violate this assumption. To overcome this limitation, we propose two novel mixed probability models consisting of Laplacian and Uniform distributions for the task of aleatoric uncertainty estimation. In this way, we explicitly address commonly challenging regions in the context of dense stereo matching and outlier measurements, respectively. To allow a fair comparison, we adapt a common neural network architecture to investigate the effects of the different uncertainty models. In an extensive evaluation using two datasets and two common dense stereo matching methods, the proposed methods demonstrate state-of-the-art accuracy.},
   code = {https://github.com/zeyun-zhong/Aleatoric-Uncertainty-Estimation-in-Dense-Stereo-Matching},
 }
 
-@inproceedings{zhong2023long,
-  title={Long-term Action Anticipation: A Quick Survey},
-  author={Zhong, Zeyun},
-  booktitle={Workshop of Fraunhofer IOSB and Institute for Anthropomatics, Vision and Fusion Laboratory},
-  pages={109},
-  year={2023},
+@inproceedings{zhong2024hybridformer,
+  title={HybridFormer: Bridging Local and Global Spatio-Temporal Dynamics for Efficient Skeleton-Based Action Recognition},
+  author={Zhong, Zeyun and Li, Tianrui and Martin, Manuel and Cormier, Mickael and Wu, Chengzhi and Diederichs, Frederik and Beyerer, Juergen},
+  booktitle={European Conference on Computer Vision Workshops},
+  pages={19--35},
+  year={2024},
+  code={https://github.com/zeyun-zhong/HybridFormer},
+  organization={Springer Nature Switzerland}
 }
 
 @inproceedings{lerch2024unsupervised,
   title={Unsupervised 3D Skeleton-Based Action Recognition Using Cross-Attention With Conditioned Generation Capabilities},
   author={Lerch*, David J and Zhong*, Zeyun and Martin, Manuel and Voit, Michael and Beyerer, J{\"u}rgen},
-  booktitle={IEEE/CVF Winter Conference on Applications of Computer Vision (<b>WACV</b>) Workshop},
+  booktitle={IEEE/CVF Winter Conference on Applications of Computer Vision (<b>WACV</b>) Workshops},
   pages={211--220},
   year={2024},
   abstract={Human action recognition plays a pivotal role in various real-world applications, including surveillance systems, robotics, and occupant monitoring in the car interior. With such a diverse range of domains, the demand for generalization becomes increasingly crucial. In this work, we propose a cross-attention-based encoder-decoder approach for unsupervised 3D skeleton-based action recognition. Specifically, our model takes a skeleton sequence as input for the encoder and further applies masking and noise to the original sequence for the decoder. By training the model to reconstruct the original skeleton sequence, it simultaneously learns to capture the underlying patterns of actions. Extensive experiments on NTU and NW-UCLA datasets demonstrate the state-of-the-art performance as well as the impressive generalizability of our proposed approach. Moreover, our experiments reveal that our approach is capable of generating conditioned skeleton sequences, offering the potential to enhance small datasets or generate samples of under-represented classes in imbalanced datasets},
   code={https://github.com/davidjlerch/tafar},
   preview={tafar.png},
 }
+
+@inproceedings{diederichs2024activities,
+  title={Activities that correlate with motion sickness in driving cars--an international online survey},
+  author={Diederichs, Frederik and Herrmanns, Amina and Lerch, David and Zhong, Zeyun and Piechnik, Daniela and Mathis, Lesley-Ann and Xian, Boyu and Vaupel, Nicklas and Vijayakumar, Ajona and Cabaroglu, Canmert and others},
+  booktitle={International Conference on Human-Computer Interaction},
+  pages={3--12},
+  year={2024},
+  organization={Springer Nature Switzerland Cham}
+}
+
+@article{zhong2024querymamba,
+  title={Querymamba: A mamba-based encoder-decoder architecture with a statistical verb-noun interaction module for video action forecasting@ ego4d long-term action anticipation challenge 2024},
+  author={Zhong, Zeyun and Martin, Manuel and Diederichs, Frederik and Beyerer, Juergen},
+  journal={arXiv preprint arXiv:2407.04184},
+  code={https://github.com/zeyun-zhong/querymamba},
+  year={2024}
+}
+
+@inproceedings{wu2024rethinking,
+  title={Rethinking attention module design for point cloud analysis},
+  author={Wu, Chengzhi and Wang, Kaige and Zhong, Zeyun and Fu, Hao and Zheng, Junwei and Zhang, Jiaming and Pfrommer, Julius and Beyerer, J{\"u}rgen},
+  booktitle={International Conference on Pattern Recognition},
+  pages={249--267},
+  year={2024},
+  organization={Springer Nature Switzerland Cham}
+}
+
+@inproceedings{schneider2024synthact,
+  title={Synthact: towards generalizable human action recognition based on synthetic data},
+  author={Schneider, David and Keller, Marco and Zhong, Zeyun and Peng, Kunyu and Roitberg, Alina and Beyerer, J{\"u}rgen and Stiefelhagen, Rainer},
+  booktitle={2024 IEEE International Conference on Robotics and Automation (ICRA)},
+  pages={13038--13045},
+  year={2024},
+  organization={IEEE}
+}
+
+@inproceedings{wu2025samble,
+  title={SAMBLE: Shape-specific point cloud sampling for an optimal trade-off between local detail and global uniformity},
+  author={Wu, Chengzhi and Wan, Yuxin and Fu, Hao and Pfrommer, Julius and Zhong, Zeyun and Zheng, Junwei and Zhang, Jiaming and Beyerer, J{\"u}rgen},
+  booktitle={Proceedings of the Computer Vision and Pattern Recognition Conference},
+  pages={1342--1352},
+  year={2025}
+}
+
+@article{schneider2025omnifall,
+  title={OmniFall: A Unified Staged-to-Wild Benchmark for Human Fall Detection},
+  author={Schneider, David and Marinov, Zdravko and Baur, Rafael and Zhong, Zeyun and D{\"u}ger, Rodi and Stiefelhagen, Rainer},
+  journal={arXiv preprint arXiv:2505.19889},
+  arxiv={2505.19889},
+  code={https://github.com/simplexsigil/omnifall-experiments},
+  year={2025}
+}
+
+@inproceedings{lerch2025learning,
+  title={Learning Robust Aligned Representations Across Multiple Visual Modalities in Human Action Recognition},
+  author={Lerch, David and Rothenburger, Bastian and Zhong, Zeyun and Martin, Manuel and Diederichs, Frederik and Stiefelhagen, Rainer},
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision Workshops},
+  pages={2679--2689},
+  year={2025}
+}
+
+@inproceedings{lerch2026multi,
+  title={Multi-modal Video Representation Alignment for Robust Self-supervised Driver Distraction Detection},
+  author={Lerch, David J and Majer, Livien and Zhong, Zeyun and Martin, Manuel and Diederichs, Frederik and Stiefelhagen, Rainer},
+  booktitle={IEEE Intelligent Transportation Systems Conference (ITSC)},
+  arxiv={2606.02352},
+  year={2026}
+}
+
+@inproceedings{kong2026impact,
+  title={IMPACT-CYCLE: A Contract-Based Multi-Agent System for Claim-Level Supervisory Correction of Long-Video Semantic Memory},
+  author={Kong, Weitong and Wen, Di and Peng, Kunyu and Schneider, David and Zhong, Zeyun and Jaus, Alexander and Marinov, Zdravko and Wei, Jiale and Liu, Ruiping and Zheng, Junwei and others},
+  booktitle={IEEE Systems, Man, and Cybernetics Society (SMC)},
+  arxiv={2604.20136},
+  year={2026}
+}
+
+@inproceedings{yin2026impact,
+  title={IMPACT-Scribe: Interactive Temporal Action Segmentation with Boundary Scribbles and Query Planning},
+  author={Yin, Qian and Wen, Di and Peng, Kunyu and Schneider, David and Zhong, Zeyun and Jaus, Alexander and Marinov, Zdravko and Wei, Jiale and Liu, Ruiping and Zheng, Junwei and others},
+  booktitle={IEEE Systems, Man, and Cybernetics Society (SMC)},
+  arxiv={2605.01668},
+  year={2026}
+}
+
+@inproceedings{zhang2026impact,
+  title={IMPACT-HOI: Supervisory Control for Onset-Anchored Partial HOI Event Construction},
+  author={Zhang, Haoshen and Wen, Di and Peng, Kunyu and Schneider, David and Zhong, Zeyun and Jaus, Alexander and Marinov, Zdravko and Wei, Jiale and Liu, Ruiping and Zheng, Junwei and others},
+  booktitle={IEEE Systems, Man, and Cybernetics Society (SMC)},
+  arxiv={2605.01666},
+  year={2026}
+}
+
+
 
 

@@ -2,96 +2,85 @@
   type: map
   contents:
     - name: Full Name
-      value: Albert Einstein
-    - name: Date of Birth
-      value: 14th March 1879
+      value: Zeyun Zhong
+    - name: Location
+      value: Karlsruhe, Germany
+    - name: Email
+      value: zeyun.zhong@kit.edu
+    - name: Summary
+      value: PhD candidate working on streaming video understanding, action anticipation, and real-time vision-language models. Seeking 2026 internship / full-time roles in video understanding and multimodal learning.
     - name: Languages
-      value: English, German
+      value: Chinese (Native), English (Fluent), German (Fluent)
 
 - title: Education
   type: time_table
   contents:
-    - title: PhD
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1905
+    - title: Ph.D. Candidate in Streaming Video Understanding
+      institution: Karlsruhe Institute of Technology (KIT), Karlsruhe, Germany
+      year: Nov. 2021 - present
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Federal teaching diploma
-      institution: Eidgenössische Technische Hochschule, Zurich, Switzerland
-      year: 1900
+        - Advisor: Prof. Dr. Juergen Beyerer and Prof. Dr. Juergen Gall.
+        - Vision and Fusion Laboratory (IES), in collaboration with Fraunhofer IOSB.
+    - title: M.Sc. in Mechatronics and Robotics
+      institution: Leibniz University Hannover, Hannover, Germany
+      year: Apr. 2018 - Mar. 2021
       description:
-        - Description 1.
-        - Description 2.
+        - With distinction — Final grade 1.2 (Excellent, German scale).
+    - title: B.Eng. in Process Engineering and Energy Technology
+      institution: University of Applied Sciences and Arts Hannover, Hannover, Germany
+      year: Sep. 2014 - Feb. 2018
+      description:
+        - Final grade 1.7 (Good, German scale).
 
 - title: Experience
   type: time_table
   contents:
-    - title: Professor of Theoretical Physics
-      institution: Institute for Advanced Study, Princeton University
-      year: 1933 - 1955
+    - title: Research Assistant
+      institution: IES, KIT & Fraunhofer IOSB, Karlsruhe, Germany
+      year: Nov. 2021 - present
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Visiting Professor
-      institution: California Institute of Technology, Pasadena, California, US
-      year: 1933
+        - Proposed E²-TTT to efficiently learn long context beyond the fixed-window constraints of transformer models, sustaining >90% passkey-retrieval accuracy at 8× the training context.
+        - Developed FlowNar, an efficient streaming video narration framework that dynamically manages the visual context, supporting 10× longer videos at 3× higher throughput than prior online LMMs.
+        - Designed several novel action anticipation architectures achieving superior performance on large-scale benchmarks, including Epic-Kitchens and Ego4D.
+        - Authored a comprehensive survey of 90+ deep learning action anticipation methods, introducing a taxonomy by contribution and consolidating datasets, metrics, and future directions.
+        - "KIMoS project: led grant acquisition (€180K) for real-time assembly assistance, securing three industrial partners, and represented Fraunhofer IOSB at Hannover Messe 2026."
+        - "JuBot project: built and deployed a multimodal action recognition system that identifies multiple people's actions in real time on the KIT ARMAR humanoid robot."
+    - title: Master Thesis & Research Assistant
+      institution: IPI, Leibniz University Hannover, Hannover, Germany
+      year: Oct. 2020 - Sep. 2021
       description:
-        - Description 1.
-        - Description 2.
-
-    - title: Director
-      institution: Kaiser Wilhelm Institute for Physics, Berlin, Germany.
-      year: 1917-1933
-
-    - title: Professor of Theoretical Physics
-      institution: Karl-Ferdinand University, Prague, Czechoslovakia
-      year: 1911 - 1917
+        - Designed probabilistic models for uncertainty estimation in dense stereo matching (grade 1.0).
+    - title: Research Intern
+      institution: Volkswagen AG, Wolfsburg, Germany
+      year: Nov. 2019 - Apr. 2020
       description:
+        - Research on adversarial attacks and robustness for semantic segmentation.
+    - title: Development Intern & Bachelor Thesis
+      institution: Robert Bosch GmbH, Schwieberdingen, Germany
+      year: May 2017 - Dec. 2017
+      description:
+        - Simulation of gasoline engine exhaust systems.
 
-    - title: Associate Professor of Theoretical Physics
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1909 - 1911
-
-- title: Open Source Projects
-  type: time_table
+- title: Selected Publications
+  type: list
   contents:
-    - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
-      year: 2015-now
-      description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
+    - "Z. Zhong, et al. <em>Rethinking Expressivity and Efficiency in Test-Time Training.</em> (Under Review)."
+    - "Z. Zhong, et al. <em>FlowNar: Scalable Streaming Narration for Long-Form Videos.</em> ICML 2026."
+    - "Z. Zhong, et al. <em>Scalable Video Action Anticipation with Cross Linear Attentive Memory.</em> WACV 2026."
+    - "Z. Zhong, et al. <em>A survey on deep learning techniques for action anticipation.</em> TPAMI (Under Review)."
+    - "Z. Zhong*, D. Schneider*, et al. <em>Anticipative feature fusion transformer for multi-modal action anticipation.</em> WACV 2023."
 
 - title: Honors and Awards
   type: time_table
   contents:
-    - year: 1921
-      items: 
-        - Nobel Prize in Physics 
-        - Matteucci Medal
-    - year: 2029
-      items: 
-        - Max Planck Medal
-
-- title: Academic Interests
-  type: nested_list
-  contents:
-    - title: Topic 1.
-      items: 
-        - Description 1.
-        - Description 2.
-    - title: Topic 2.
+    - year: 2024
       items:
-        - Description 1.
-        - Description 2.
+        - 2nd place (out of 15 teams), Ego4D Long-Term Action Anticipation Challenge @ CVPR 2024
+        - 6th place (out of 30 teams), KIT Neuland Innovation Contest
 
-- title: Other Interests
+- title: Skills
   type: list
   contents:
-    - <u>Hobbies:</u> Hobby 1, Hobby 2, etc.
+    - <u>Languages:</u> Chinese (Native), English (Fluent), German (Fluent)
+    - <u>Programming:</u> Python, Matlab, C++
+    - <u>Libraries & Tools:</u> PyTorch, HuggingFace, DeepSpeed, TensorFlow, OpenCV, ROS

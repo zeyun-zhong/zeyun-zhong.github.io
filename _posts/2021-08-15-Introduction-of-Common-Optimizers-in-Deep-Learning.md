@@ -25,7 +25,7 @@ Challenges:
 - Saddle points, i.e. points where one dimension slopes up and another slopes down. The gradient is close to zero in all dimensions, which makes it hard for SGD to escape. 
 
 ### Momentum
-The momentum algorithm introduces a variable $v$ that plays the role of velocity, set to an exponentially decay average of the negative gradient. 
+The momentum algorithm introduces a variable $$v$$ that plays the role of velocity, set to an exponentially decay average of the negative gradient. 
 
 $$
 \begin{aligned}
@@ -40,7 +40,7 @@ Momentum helps accelerate SGD in the relevant direction and dampens oscillations
 ![](/assets/images/Optimizer/SGD_with_momentum.gif){:width=50% .align-center}
 *Figure 2. SGD with momentum.*
 
-As this algorithm considers the gradient from the previous time step, the saddle point of current step could be escaped, although the current gradient is close to zero. Common values of the momentum term $\alpha$ used in practice include 0.5, 0.9 and 0.99.
+As this algorithm considers the gradient from the previous time step, the saddle point of current step could be escaped, although the current gradient is close to zero. Common values of the momentum term $$\alpha$$ used in practice include 0.5, 0.9 and 0.99.
 
 ### Nesterov Momentum
 Nesterov momentum is a slightly different version of the momentum update. The gradient now is evaluated after the current velocity is applied. Thus one can interpret Nesterov momentum as attempting to add a **correction factor** to the standard method of momentum.
