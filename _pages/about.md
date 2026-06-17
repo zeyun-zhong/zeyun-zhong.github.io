@@ -2,7 +2,7 @@
 layout: about
 title: About
 permalink: /
-subtitle: Ph.D. Candidate @ <a href="https://ies.anthropomatik.kit.edu/english/index.php">KIT</a> & <a href="https://www.iosb.fraunhofer.de/en.html">Fraunhofer IOSB</a>
+subtitle: Ph.D. Candidate @ <a href="https://ies.iar.kit.edu/english/index.php">KIT</a> & <a href="https://www.iosb.fraunhofer.de/en.html">Fraunhofer IOSB</a>
 
 profile:
   align: right
@@ -20,7 +20,7 @@ social: true  # includes social icons at the bottom of the page
 services: false
 ---
 
-I am a Ph.D. candidate at the [Vision and Fusion Laboratory (IES)](https://ies.anthropomatik.kit.edu/english/index.php) of the Karlsruhe Institute of Technology, in collaboration with [Fraunhofer IOSB](https://www.iosb.fraunhofer.de/en.html), advised by Prof. Dr. Jürgen Beyerer and Prof. Dr. Juergen Gall.
+I am a Ph.D. candidate at the [Vision and Fusion Laboratory (IES)](https://ies.iar.kit.edu/english/index.php) of the Karlsruhe Institute of Technology, working in collaboration with the Human-AI Interaction department at [Fraunhofer IOSB](https://www.iosb.fraunhofer.de/en/competences/image-exploitation/human-ai-interaction.html). I am advised by [Prof. Dr. Juergen Beyerer](https://www.iosb.fraunhofer.de/en/about-us/board-of-directors/juergen-beyerer.html) and [Prof. Dr. Juergen Gall](https://pages.iai.uni-bonn.de/gall_juergen/).
 
 My research centers on **streaming video understanding**, **action anticipation**, and **real-time vision-language models** — building models that reason over long-form video efficiently and in real time. Recent work includes test-time training for long-context modeling, scalable streaming video narration, and linear-attention memory for online action anticipation.
 
