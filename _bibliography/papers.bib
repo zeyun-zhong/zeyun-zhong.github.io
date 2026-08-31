@@ -7,22 +7,18 @@
 @string{wacv = {IEEE/CVF Winter Conference on Applications of Computer Vision (<b>WACV</b>)}}
 @string{icml = {International Conference on Machine Learning (<b>ICML</b>)}}
 @string{tpami = {IEEE Transactions on Pattern Analysis and Machine Intelligence (<b>TPAMI</b>)}}
+@string{mm = {Proceedings of the ACM International Conference on Multimedia (<b>ACM MM</b>)}}
 
-@inproceedings{schneider2026omnifall,
-  title={OmniFall: A Unified Staged-to-Wild Benchmark for Human Fall Detection},
-  author={Schneider, David and Marinov, Zdravko and Baur, Rafael and Zhong, Zeyun and D{\"u}ger, Rodi and Stiefelhagen, Rainer},
-  booktitle=eccv,
-  arxiv={2505.19889},
-  code={https://github.com/simplexsigil/omnifall-experiments},
-  year={2026}
-}
+
 
 @article{zhong2026e2ttt,
   title={Rethinking Expressivity and Efficiency in Test-Time Training},
   author={Zeyun Zhong and Joya Chen and Manuel Martin and Frederik Diederichs and Juergen Gall and Jürgen Beyerer},
+  journal={arXiv preprint arXiv:2608.21308},
+  arxiv={2608.21308},
   year={2026},
+  code={https://github.com/zeyun-zhong/E2-TTT},
   selected={true},
-  note={Under Review},
   preview={ttt.png},
   abstract={Test-Time Training (TTT) enables long-context processing via continuous weight updates during inference, but current methods struggle to balance the expressivity of per-token update dynamics 
   with the hardware efficiency of chunk-wise approximations. We propose E²-TTT (Expressive and Efficient TTT) to bridge this gap. By deriving a closed-form state transition that exactly aggregates 
@@ -30,6 +26,37 @@
   We validate E²-TTT by training models up to 1.3B parameters from scratch. Extensive experiments demonstrate that our method consistently outperforms previous TTT and hybrid attention baselines in language modeling and retrieval, 
   while achieving significantly better extrapolation on the standard ``Needle in a Haystack'' test, maintaining > 90% accuracy on passkey retrieval at the training context length. 
   Meanwhile, E²-TTT can match the training throughput of efficient chunk-wise methods, demonstrating that it effectively reconciles expressivity with efficiency.}
+}
+
+@article{chen2026streamttt,
+  title={StreamTTT: Reconciling Real-Time Perception and Long-Term Memory in Streaming VLMs},
+  author={Chen, Joya and Zhong, Zeyun and Shou, Mike Zheng},
+  journal={arXiv preprint arXiv:2608.13416},
+  arxiv={2608.13416},
+  code={https://github.com/zeyun-zhong/StreamTTT},
+  year={2026},
+  preview={streamttt.png}
+}
+
+@inproceedings{wen2026impact,
+  title={IMPACT: A Dataset for Multi-Granularity Human Procedural Action Understanding in Industrial Assembly},
+  author={Wen, Di and Zhong, Zeyun and Schneider, David and Zaremski, Manuel and Kunzmann, Linus and Shi, Yitian and Liu, Ruiping and Chen, Yufan and Zheng, Junwei and Li, Jiahang and others},
+  booktitle=mm,
+  arxiv={2604.10409},
+  year={2026},
+  code={https://github.com/Kratos-Wen/IMPACT},
+  website={https://diwen.ai/IMPACT/},
+  preview={impact.png}
+}
+
+@inproceedings{schneider2026omnifall,
+  title={OmniFall: A Unified Staged-to-Wild Benchmark for Human Fall Detection},
+  author={Schneider, David and Marinov, Zdravko and Baur, Rafael and Zhong, Zeyun and D{\"u}ger, Rodi and Stiefelhagen, Rainer},
+  booktitle=eccv,
+  arxiv={2505.19889},
+  code={https://github.com/simplexsigil/omnifall-experiments},
+  year={2026},
+  preview={omnifall.png}
 }
 
 @inproceedings{zhong2026flownar,
@@ -65,16 +92,6 @@
   reformulating linear attention to replace traditional cross attention, CLAM achieves linear computation complexity and constant memory usage relative to input length. Finally, by fusing the outputs of the temporal processor and CLAM,
   a non-autoregressive Transformer decoder generates future actions in one shot with high accuracy. Experiments on egocentric (EpicKitchens100 and Ego4D) and third-person (Thumos14) benchmarks demonstrate our model’s superior
   anticipation accuracy and scalability, processing longer sequences with significantly less latency growth than alternatives. Our approach also achieves promising results in online action detection.}
-}
-
-@article{wen2026impact,
-  title={IMPACT: A Dataset for Multi-Granularity Human Procedural Action Understanding in Industrial Assembly},
-  author={Wen, Di and Zhong, Zeyun and Schneider, David and Zaremski, Manuel and Kunzmann, Linus and Shi, Yitian and Liu, Ruiping and Chen, Yufan and Zheng, Junwei and Li, Jiahang and others},
-  journal={arXiv preprint arXiv:2604.10409},
-  arxiv={2604.10409},
-  year={2026},
-  code={https://github.com/Kratos-Wen/IMPACT},
-  website={https://diwen.ai/IMPACT/}
 }
 
 @article{zhong2023diffant,

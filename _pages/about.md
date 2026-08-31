@@ -26,4 +26,4 @@ My research centers on **streaming video understanding**, **action anticipation*
 
 Earlier, I received the M.Sc. in Mechatronics and Robotics from Leibniz University Hannover (2021, with distinction) and the B.Eng. in Process Engineering from Hannover University of Applied Sciences and Arts (2018).
 
-I am attending **ICML 2026** and am on the lookout for **2026 internship / full-time opportunities** in video understanding and multimodal learning — feel free to [reach out](mailto:zeyun.zhong@kit.edu).
+I am looking for **2026 internship / full-time opportunities** in video understanding and multimodal learning — feel free to [reach out](mailto:zeyun.zhong@kit.edu).
