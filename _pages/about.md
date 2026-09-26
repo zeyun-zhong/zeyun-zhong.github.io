@@ -25,5 +25,3 @@ I am a Ph.D. candidate at the [Vision and Fusion Laboratory (IES)](https://ies.i
 My research centers on **streaming video understanding**, **action anticipation**, and **real-time vision-language models** — building models that reason over long-form video efficiently and in real time. Recent work includes test-time training for long-context modeling, scalable streaming video narration, and linear-attention memory for online action anticipation.
 
 Earlier, I received the M.Sc. in Mechatronics and Robotics from Leibniz University Hannover (2021, with distinction) and the B.Eng. in Process Engineering from Hannover University of Applied Sciences and Arts (2018).
-
-I am looking for **2026 internship / full-time opportunities** in video understanding and multimodal learning — feel free to [reach out](mailto:zeyun.zhong@kit.edu).

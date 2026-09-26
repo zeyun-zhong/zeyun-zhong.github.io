@@ -25,3 +25,11 @@ group :other_plugins do
     gem 'feedjira'
     gem 'httparty'
 end
+# Standard libraries that are no longer default gems in newer Ruby versions
+group :stdlib do
+    gem 'base64'
+    gem 'bigdecimal'
+    gem 'csv'
+    gem 'logger'
+    gem 'ostruct'
+end
